@@ -28,8 +28,12 @@ urlpatterns = [
     path('register/',userViews.CreateUserAPIView.as_view(), name='register'),
     path("login/", TokenObtainPairView.as_view(), name="login"),
     path("IOCcreate/", views.IOCCreateView.as_view(), name="IOC-Create"),
-    path("Reportcreate/", views.ReporCreateView.as_view(), name="Report-Create"),
     path("IOClist/", views.IOCListView.as_view(), name="IOC-List"),
+    path("Reportcreate/", views.ReportCreateView.as_view(), name="Report-Create"),
+    path("Reportlist/", views.ReportListView.as_view(), name="Report-list"),
+    path("Report/<int:report_id>", views.ReportDetailView.as_view(), name="Report-Detail"),
+    path("Reportupdate/<int:report_id>", views.ReportUpdateView.as_view(), name="Report-Update"),
+    path("Reportdelete/", views.ReportDeleteView.as_view(), name="Report-Delete"),
     path("home/",TemplateView.as_view(template_name='dashboard/home.html'),name='home' ),
     path('accounts/', include('allauth.urls'))
 ]
