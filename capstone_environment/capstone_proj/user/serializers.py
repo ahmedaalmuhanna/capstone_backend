@@ -1,3 +1,5 @@
+from cProfile import Profile
+from dataclasses import fields
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -39,3 +41,9 @@ class LoginUserSerializer(serializers.Serializer):
 
         data["access"] = token
         return data
+    
+    
+    class ProfileSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Profile
+            fields = ['bio','image',]
