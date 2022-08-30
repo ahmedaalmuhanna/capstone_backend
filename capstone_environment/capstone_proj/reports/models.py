@@ -66,10 +66,10 @@ class Report(models.Model):
     """
     IDEA: we can add an attribute named googleDownloads to check the google downloads
     """
-    def __init__(self, views, googleViews, isGoogle):
-        self.views = views # to count all views
-        self.googleViews = googleViews # to count Google views
-        self.isGoogle = isGoogle # to check if the user is google user not not. it is bool
+    # def __init__(self, views, googleViews, isGoogle):
+    #     self.views = views # to count all views
+    #     self.googleViews = googleViews # to count Google views
+    #     self.isGoogle = isGoogle # to check if the user is google user not not. it is bool
         
     
     def __str__(self) :
