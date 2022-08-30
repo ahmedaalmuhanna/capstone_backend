@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView,DestroyAPIView, RetrieveAPIView
 
 
+#IOC model serializers
+
 class IOCCreateView(CreateAPIView):
     serializer_class = IOCSerializer
     # def perform_create(self, serializer):
@@ -21,7 +23,38 @@ class IOCDetailView(RetrieveAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = 'ioc_id'
     
+    
+# Report model serializers
 
-class ReporCreateView(CreateAPIView):
+
+#Create report
+class ReportCreateView(CreateAPIView):
+    serializer_class = ReportSerializer
+
+
+#List All Reports
+class ReportListView(ListAPIView):
+    queryset = Report.objects.all()
     serializer_class = ReportSerializer
     
+    
+#One Report Detail    
+class ReportDetailView(RetrieveAPIView):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'report_id'
+    
+#One Report Update
+class ReportUpdateView(UpdateAPIView):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'report_id'
+    
+#One Report Delete
+class ReportDeleteView(DestroyAPIView):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'report_id'

@@ -20,6 +20,9 @@ class IOCS(models.Model):
     sha256 = models.TextField(max_length=255, null = True)
     email  = models.TextField(max_length=255, null = True)
     
+    def __str__(self):
+        return self.cve
+    
     
     """
     # the following function are to brake the IOCs:
@@ -55,11 +58,12 @@ class IOCS(models.Model):
 
 class Report(models.Model):
     profile   = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='profile')
-    iocs      = models.OneToOneField(IOCS,on_delete= models.DO_NOTHING, null = True, related_name='iocs' )
+    iocs      = models.OneToOneField(IOCS,on_delete= models.CASCADE, null = True, related_name='iocs' )
     reference = models.URLField(max_length=200,null = True)
     details   = models.TextField(max_length=255, null = True)
     title     = models.CharField(max_length=200,null = True)
     time      = models.DateTimeField(auto_now=True)
+    
     
     
     
