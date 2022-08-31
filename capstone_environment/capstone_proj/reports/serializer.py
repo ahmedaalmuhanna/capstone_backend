@@ -1,5 +1,4 @@
-from dataclasses import field, fields
-import profile
+from wsgiref import validate
 from rest_framework import serializers
 from reports.models import IOCS, Report
 from user.serializers import ProfileSerializer
@@ -19,6 +18,8 @@ class ReportSerializer(serializers.ModelSerializer):
     # def get_profile(self, obj):
     #     return ProfileSerializer(obj.profile).data 
     profile = ProfileSerializer
+    
+    #need to change read only 
     iocs = IOCSerializer()
     class Meta:
         model = Report
@@ -35,3 +36,18 @@ class ReportSerializer(serializers.ModelSerializer):
             ioc_object = ioc.save()
         report = Report.objects.create(iocs=ioc_object, **validated_data)
         return report
+    
+
+    # trying to solve the update method:    
+    # def update(self, instance, validated_data):
+    #     iocss_data = validated_data.pop('iocs')
+    #     iocss = (instance.iocs)
+    #     instance.iocs = validated_data.get('iocs', instance.iocs)
+    #     instance.save()
+        
+    #     for iocs_data in iocss_data:
+    #         iocs = iocss.pop(0)
+    #         iocs.cve = iocs_data.get('cve', iocs.cve)
+    #         iocs.save()
+    #     return instance
+        
