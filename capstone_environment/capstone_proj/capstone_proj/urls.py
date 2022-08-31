@@ -33,7 +33,7 @@ urlpatterns = [
     path("Reportlist/", views.ReportListView.as_view(), name="Report-list"),
     path("Report/<int:report_id>", views.ReportDetailView.as_view(), name="Report-Detail"),
     path("Reportupdate/<int:report_id>", views.ReportUpdateView.as_view(), name="Report-Update"),
-    path("Reportdelete/", views.ReportDeleteView.as_view(), name="Report-Delete"),
+    path("Reportdelete/<int:report_id>", views.ReportDeleteView.as_view(), name="Report-Delete"),
     path("home/",TemplateView.as_view(template_name='dashboard/home.html'),name='home' ),
     path('accounts/', include('allauth.urls'))
 ]
