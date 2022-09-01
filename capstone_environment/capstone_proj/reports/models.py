@@ -11,14 +11,14 @@ from user.models import Profile
 
 """
 class IOCS(models.Model):
-    cve    = models.TextField(max_length=255, null = True)
-    url    = models.TextField(max_length=255, null = True)
-    domain = models.TextField(max_length=255, null = True)
-    ip     = models.TextField(max_length=255, null = True)
-    md5    = models.TextField(max_length=255, null = True)
-    sha1   = models.TextField(max_length=255, null = True)
-    sha256 = models.TextField(max_length=255, null = True)
-    email  = models.TextField(max_length=255, null = True)
+    cve    = models.TextField(max_length=255, null = True, default='No information')
+    url    = models.TextField(max_length=255, null = True, default='No information')
+    domain = models.TextField(max_length=255, null = True, default='No information')
+    ip     = models.TextField(max_length=255, null = True, default='No information')
+    md5    = models.TextField(max_length=255, null = True, default='No information')
+    sha1   = models.TextField(max_length=255, null = True, default='No information')
+    sha256 = models.TextField(max_length=255, null = True, default='No information')
+    email  = models.TextField(max_length=255, null = True, default='No information')
     
     def __str__(self):
         return self.cve
