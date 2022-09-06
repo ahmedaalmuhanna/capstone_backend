@@ -101,21 +101,21 @@ def report_list(request):
 
 
 
-def create_report(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
-    form = ReportForm()
-    if request.method == "POST":
-        form = ReportForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('')
+# def create_report(request):
+#     if not request.user.is_authenticated:
+#         return redirect("login")
+#     form = ReportForm()
+#     if request.method == "POST":
+#         form = ReportForm(request.POST,request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('')
 
-    context = {
+#     context = {
 
-        "form":form,
-    }
-    return render(request,"create_report.html",context)
+#         "form":form,
+#     }
+#     return render(request,"create_report.html",context)
 
 
 
