@@ -1,0 +1,9 @@
+.image {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size:cover;
+    object-fit:fill;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/000/690/000/original/blue-binary-cyber-circuit-future-technology-concept-background-vector.jpg");
+   }
+
