@@ -27,7 +27,7 @@ class ReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = '__all__'
         
-        #https://www.django-rest-framework.org/api-guide/relations/#writable-nested-serializers
+    #https://www.django-rest-framework.org/api-guide/relations/#writable-nested-serializers
         
     #To create an IOC within the report serializer on creation of the report
     def create(self, validated_data):
