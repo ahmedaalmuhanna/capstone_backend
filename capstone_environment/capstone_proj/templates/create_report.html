@@ -1,28 +1,29 @@
-{% extends "base.html" %}
+{%extends "base.html"%}
 {%load static%}
-{%block title%} Home Page {%endblock title%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
+{% load crispy_forms_tags %}
+{%block title%} Create Report {%endblock title%}
+
+{%block contant%}
+<section id="interface">
+    <h3 style=" margin-left: 15px; margin-top: 25px;">
+        Add Report
+    </h3>
+   
+    <div class="container ">
+        <div class="row my-5">
+            <div class="col-md-12">
+                <form action= "{% url 'report_form' %}" method="post" class="form">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</section>
 
 
 
-  {% block content %}
-  
-      
-      {%csrf_token%}
-  {% endblock content %}
-
-
-
-
-
-</body>
-</html>
+{%endblock contant%}

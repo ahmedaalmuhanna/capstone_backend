@@ -6,6 +6,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView,De
 from .forms import ReportForm,IOCSForm
 from django.shortcuts import render ,redirect
 from reports.models import Report
+from django.contrib.auth import authenticate 
 
 
 #IOC model serializers
@@ -103,44 +104,42 @@ def report_list(request):
 
 
 
-# def create_report(request):
-#     if not request.user.is_authenticated:
-#         return redirect("login")
-#     form = ReportForm()
-#     if request.method == "POST":
-#         form = ReportForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('')
+def create_report(request):
+    form = ReportForm()
+    if request.method == "POST":
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('report_form')
 
-#     context = {
+    context = {
 
-#         "form":form,
-#     }
-#     return render(request,"create_report.html",context)
+        "form":form,
+    }
+    return render(request,"create_report.html",context)
 
 
 
 
-# def update_recipe(request,recipe_id):
-#     if not request.user.is_authenticated:
-#         return redirect("login")
+def update_report(request,report_id):
+    if not request.user.is_authenticated:
+        return redirect("login")
 
-#     recipe = Recipe.objects.get(id=recipe_id)
-#     form = RecipeForm(instance=recipe)
-#     if request.method == "POST":
-#         print('its a post')
-#         form = RecipeForm(request.POST, request.FILES,instance=recipe)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('recipes')
-#     context = {
+    report = Report.objects.get(id=report_id)
+    form = ReportForm(instance=report)
+    if request.method == "POST":
+       
+        form = ReportForm(request.POST, request.FILES,instance=report)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    context = {
 
-#         "form":form,
-#         "recipe":recipe,
-#     }
+        "form":form,
+        "report":report,
+    }
 
-#     return render(request,"update_recipes.html",context)
+    return render(request,"update_report.html",context)
 
 
 

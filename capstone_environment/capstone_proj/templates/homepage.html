@@ -1,0 +1,153 @@
+{% extends 'base.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%block contant%}
+   
+<main>
+
+    <div class="cards">
+        <div class="card-single">
+            <div>
+                <h1>{{gov_count}}</h1>
+                <span>Goverment users</span>
+            </div>
+            <div>
+                <span class="las la-users"></span>
+            </div>
+        </div>
+      
+        <div class="card-single">
+            <div>
+                <h1>{{users.count}}</h1>
+                <span>Users</span>
+            </div>
+            <div>
+                <span class="las la-users"></span>
+            </div>
+        </div>
+        <div class="card-single">
+            <div>
+                <h1>300</h1>
+                <span>Reports</span>
+            </div>
+            <div>
+                <span class="las la-clipboard-list"></span>
+            </div>
+        </div>
+        <div class="card-single">
+            <div>
+                <h1>300</h1>
+                <span>Views</span>
+            </div>
+            <div>
+                <span class="las la-clipboard-list"></span>
+            </div>
+        </div>
+    </div>
+    <div class="recent-grid">
+        <div class="projects">
+            <div class="card">
+                 <div class="card-header">
+                    <h3>Users details</h3>
+                    <button>see all <span class="las la-arrow-right">
+                    </span></button>
+                </div>
+            <div class="card-body">
+               <div class="table-responsive">
+                    <table width = "100%">
+                        <thead>
+                           
+                                <tr>
+                                    <td>First name</td>
+                                    <td>Last name</td>
+                                    <td>Username </td>
+                                    <td>E-mail</td>
+                                    
+                                    <td>Type</td>
+                                </tr>
+    
+                        </thead>
+                        <tbody >
+                            {% for user in users %}
+                            <tr>
+    
+                                <td>{{user.first_name}}</td>
+                                <td>{{user.last_name}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.email}}</td>
+                               
+                                <td>
+                                    {%if user.profile.is_gov %}
+                                    <span class="status green"> </span>
+                                    Goverment user
+                                   {%else %}
+                                   <span class="status red">  </span>
+                                   Normal user
+                                   {%endif%}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                           
+    
+                        </tbody>
+                    </table>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="customers">
+    <div class="card">
+        <div class="card-header">
+           <h3>New user</h3>
+           <button>+ Add user <span class="las ">
+           </span></button>
+            </div>
+                <div class="card-body" >
+                    <div class="customer">
+                        <div class="info">
+                        <img src="{%static 'assets/icon.png' %}" width="40px" height="40px" alt="">
+                            <h4>Abdulaziz Al-Marzoq</h4>
+                            <small>MOI</small>
+                      
+                     </div>
+                     <div class="contact">
+                        <span class="las la-user-circle"></span>
+                        <span class="las la-comment"></span>
+                        <span class="las la-phone"></span>
+                     </div>
+                   </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer">
+                        <div class="info">
+                        <img src="{%static 'assets/icon.png' %}" width="40px" height="40px" alt="">
+                            <h4>Abdulaziz Al-Marzoq</h4>
+                            <small>MOI</small>
+                      
+                     </div>
+                     <div class="contact">
+                        <span class="las la-user-circle"></span>
+                        <span class="las la-comment"></span>
+                        <span class="las la-phone"></span>
+                     </div>
+                   </div>
+                </div>
+                  
+            </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </main> 
+</div>
+{%endblock contant%}
+</body>
+</html>

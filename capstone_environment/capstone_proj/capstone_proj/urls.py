@@ -20,10 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from user import views as userViews
-from reports import views
 from django.views.generic import TemplateView
 from user.views import  register_user,login_user,logout_user,dashboard,get_User
-from reports.views import report_list
+from reports.views import report_list,create_report,update_report
 
 
 urlpatterns = [
@@ -37,9 +36,15 @@ urlpatterns = [
     # path("api/ioc/<int:ioc_id>", views.IOCDetailView.as_view(), name="ioc-detail"),
     # path("api/iocupdate/<int:ioc_id>", views.IOCUpdateView.as_view(), name="ioc-update"),
     # path("api/iocdelete/<int:ioc_id>", views.IOCDeleteView.as_view(), name="ioc-delete"),
-    path("api/reportcreate/", views.ReportCreateView.as_view(), name="report-create"),
-    path("api/reportlist/", views.ReportListView.as_view(), name="report-list"),
-    path("api/report/<int:report_id>", views.ReportDetailView.as_view(), name="report-detail"),
+
+
+
+    # path("api/reportcreate/", views.ReportCreateView.as_view(), name="report-create"),
+    # path("api/reportlist/", views.ReportListView.as_view(), name="report-list"),
+    # path("api/report/<int:report_id>", views.ReportDetailView.as_view(), name="report-detail"),
+
+
+
     # path("api/reportupdate/<int:report_id>", views.ReportUpdateView.as_view(), name="report-update"),
     # path("api/reportdelete/<int:report_id>", views.ReportDeleteView.as_view(), name="report-delete"),
     # path("api/profile/report/<int:profile_id>", views.ProfileReportListView.as_view(),name='profile-report'),
@@ -50,6 +55,8 @@ urlpatterns = [
     path("logout/", logout_user,name="web-logout"),
     path("report/", report_list,name="reports"),
     path("dashboard/", get_User,name="web-dashboard"),
+    path("dashboard/create-report/", create_report,name="report_form"),
+    path("dashboard/update/<int:report_id>/", update_report,name="report_update_form"),
 ]
 
 

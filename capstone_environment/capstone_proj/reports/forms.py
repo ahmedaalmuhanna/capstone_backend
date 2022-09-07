@@ -1,5 +1,4 @@
 from django import forms
-
 from .models import Report , IOCS 
 
 
@@ -8,7 +7,7 @@ from .models import Report , IOCS
 class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        fields = "__all__"
+        fields = ['profile','reference','details','title','is_approve',]
 
 
 class IOCSForm(forms.ModelForm):

@@ -48,16 +48,15 @@ INSTALLED_APPS = [
     "user",
     "reports",
     'allauth',
-    'crispy_forms',
+    "crispy_forms",
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    "bootstrap4",
-    'django_forms_bootstrap'
- 
-    
-    
+    "bootstrap5",
+    "bootstrapform"
 ]
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -182,8 +181,11 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+
