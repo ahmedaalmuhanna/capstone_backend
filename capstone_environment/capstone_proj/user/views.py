@@ -114,4 +114,4 @@ def get_User(request):
 
 
     }
-    return render (request,"base.html",context)
+    return render (request,"homepage.html",context)
