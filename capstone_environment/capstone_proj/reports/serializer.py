@@ -3,7 +3,6 @@ from reports.models import IOCS, Report
 from user.serializers import ProfileSerializer
 
 
-
 class IOCSerializer(serializers.ModelSerializer):
     class Meta: 
         model = IOCS
@@ -21,21 +20,24 @@ class ReportListSerializer(serializers.ModelSerializer):
 
 #Serializer for everything that has to do with reports excluding the list view
 class ReportSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer
+    profile = ProfileSerializer(read_only=True)
     iocs = IOCSerializer()
     class Meta:
         model = Report
         fields = '__all__'
         
-        #https://www.django-rest-framework.org/api-guide/relations/#writable-nested-serializers
-        
+    #https://www.django-rest-framework.org/api-guide/relations/#writable-nested-serializers
+    def validate(self, attrs):
+        print('validate')
+        return super().validate(attrs)
     #To create an IOC within the report serializer on creation of the report
     def create(self, validated_data):
+        print(dir(self))
         iocs_data = validated_data.pop('iocs')
         ioc = IOCSerializer(data=iocs_data)
         if ioc.is_valid():
             ioc_object = ioc.save()
-        report = Report.objects.create(iocs=ioc_object, **validated_data)
+        report = Report.objects.create(profile=self.context.get("request").user.profile, iocs=ioc_object, **validated_data)
         return report
     
 
