@@ -63,6 +63,7 @@ class Report(models.Model):
     details   = models.TextField(max_length=255, null = True)
     title     = models.CharField(max_length=200,null = True)
     time      = models.DateTimeField(auto_now=True)
+    is_approve = models.BooleanField(default=False)
     
     
     

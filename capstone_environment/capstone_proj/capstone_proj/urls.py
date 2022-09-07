@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from webbrowser import get
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
@@ -21,6 +22,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from user import views as userViews
 from reports import views
 from django.views.generic import TemplateView
+from user.views import  register_user,login_user,logout_user,dashboard,get_User
+from reports.views import report_list
 
 
 urlpatterns = [
@@ -41,7 +44,12 @@ urlpatterns = [
     # path("api/reportdelete/<int:report_id>", views.ReportDeleteView.as_view(), name="report-delete"),
     # path("api/profile/report/<int:profile_id>", views.ProfileReportListView.as_view(),name='profile-report'),
     path("home/",TemplateView.as_view(template_name='dashboard/home.html'),name='home' ),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path("register/", register_user,name="web-register"),
+    path("login/", login_user,name="web-login"),
+    path("logout/", logout_user,name="web-logout"),
+    path("report/", report_list,name="reports"),
+    path("dashboard/", get_User,name="web-dashboard"),
 ]
 
 

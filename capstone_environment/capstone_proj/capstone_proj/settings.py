@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    "bootstrap4",
+    'django_forms_bootstrap'
  
     
     
@@ -136,10 +138,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "static-cdn"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "assets/"
+MEDIA_ROOT = BASE_DIR / "assets"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -150,7 +155,7 @@ AUTHENTICATION_BACKENDS = [
 
     'django.contrib.auth.backends.ModelBackend',
 
-    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 
 ]
 SITE_ID = 1
@@ -171,8 +176,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = 'home'
-
+LOGIN_REDIRECT_URL = 'dashboard/'
+LOGIN_URL ='login/'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
