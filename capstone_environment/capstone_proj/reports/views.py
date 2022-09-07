@@ -126,7 +126,7 @@ def update_report(request,report_id):
     report = Report.objects.get(id=report_id)
     form = ReportForm(instance=report)
     if request.method == "POST":
-        print('its a post')
+       
         form = ReportForm(request.POST, request.FILES,instance=report)
         if form.is_valid():
             form.save()
