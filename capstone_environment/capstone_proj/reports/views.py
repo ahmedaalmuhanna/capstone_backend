@@ -47,6 +47,8 @@ class IOCDeleteView(DestroyAPIView):
 #Create report
 class ReportCreateView(CreateAPIView):
     serializer_class = ReportSerializer
+    queryset = Report.objects.all()
+
 
 
 #List All Reports
