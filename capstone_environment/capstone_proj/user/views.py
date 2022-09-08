@@ -106,11 +106,14 @@ def dashboard(request):
 def get_User(request):
     users = User.objects.all()
     gov_count = User.objects.filter(profile__is_gov=True).count()
+    reports = Report.objects.all().count()
+
     
     print("here")
     context = {
         "users":users,
-        'gov_count': gov_count
+        'gov_count': gov_count,
+        'reports': reports
 
 
     }

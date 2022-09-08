@@ -30,12 +30,17 @@ class ReportSerializer(serializers.ModelSerializer):
         #https://www.django-rest-framework.org/api-guide/relations/#writable-nested-serializers
         
     #To create an IOC within the report serializer on creation of the report
+    def validate(self, attrs):
+        print('validate')
+        return super().validate(attrs)
+    #To create an IOC within the report serializer on creation of the report
     def create(self, validated_data):
+        print(dir(self))
         iocs_data = validated_data.pop('iocs')
         ioc = IOCSerializer(data=iocs_data)
         if ioc.is_valid():
             ioc_object = ioc.save()
-        report = Report.objects.create(iocs=ioc_object, **validated_data)
+        report = Report.objects.create(profile=self.context.get("request").user.profile, iocs=ioc_object, **validated_data)
         return report
     
 

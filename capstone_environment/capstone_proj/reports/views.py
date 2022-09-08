@@ -56,7 +56,7 @@ class ReportCreateView(CreateAPIView):
 
 #List All Reports
 class ReportListView(ListAPIView):
-    queryset = Report.objects.all()
+    queryset = Report.objects.filter(is_approve=True)
     serializer_class = ReportListSerializer
     
     
@@ -103,16 +103,19 @@ def report_list(request):
 
 
 def create_report(request):
-    form = ReportForm()
+    ioc_form = IOCSForm(request.POST or None)
+    report_form = ReportForm(request.POST or None)
     if request.method == "POST":
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('report_form')
-
+        if all([ioc_form.is_valid(), report_form.is_valid()]):
+            ioc_instence = ioc_form.save()
+            report=report_form.save(commit=False)
+            report.iocs=ioc_instence
+            report.is_approve = True
+            report.save()
+            return redirect('web-dashboard')
     context = {
-
-        "form":form,
+        "report_form":report_form,
+        "ioc_form":ioc_form,
     }
     return render(request,"create_report.html",context)
 
@@ -120,17 +123,13 @@ def create_report(request):
 
 
 def update_report(request,report_id):
-    if not request.user.is_authenticated:
-        return redirect("login")
-
     report = Report.objects.get(id=report_id)
     form = ReportForm(instance=report)
     if request.method == "POST":
-       
         form = ReportForm(request.POST, request.FILES,instance=report)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('web-dashboard')
     context = {
 
         "form":form,
@@ -139,7 +138,12 @@ def update_report(request,report_id):
 
     return render(request,"update_report.html",context)
 
-
+def get_rport_list(request):
+    reports = Report.objects.all()
+    context = {
+        "reports":reports
+    }
+    return render (request, 'report_list.html',context)
 
 
 # def delete(request,recipe_id):
