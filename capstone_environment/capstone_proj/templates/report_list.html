@@ -1,7 +1,7 @@
 {%extends "base.html"%}
 {%load static%}
 {% load crispy_forms_tags %}
-{%block title%} Create Report {%endblock title%}
+{%block title%} Report list {%endblock title%}
 
 
 
@@ -18,7 +18,7 @@
     
     <div class="row ">
     {%for report in reports %}
-    <div class="card text-bg-light m-3" style="width:400px; height: 800px;">
+    <div class="card text-bg-light m-3" style="width:400px; height: 1000px;">
         <div class="card-header">{{report.profile.user}}</div>
         <div class="card-body">
             <h4>{{report.title}}</h4>
