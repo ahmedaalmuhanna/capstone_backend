@@ -14,7 +14,8 @@
             <div class="col-md-12">
                 <form action= "{% url 'report_form' %}" method="post" class="form">
                     {% csrf_token %}
-                    {{form}}
+                    {{report_form|crispy}}
+                    {{ioc_form|crispy}}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "rest_framework",
-    'rest_framework_simplejwt',
+    "rest_framework_simplejwt",
+
     "user",
     "reports",
     'allauth',
@@ -180,6 +181,7 @@ LOGIN_URL ='login/'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 
 REST_FRAMEWORK = {

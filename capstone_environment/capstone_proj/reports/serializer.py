@@ -31,6 +31,10 @@ class ReportSerializer(serializers.ModelSerializer):
         print('validate')
         return super().validate(attrs)
     #To create an IOC within the report serializer on creation of the report
+    def validate(self, attrs):
+        print('validate')
+        return super().validate(attrs)
+    #To create an IOC within the report serializer on creation of the report
     def create(self, validated_data):
         print(dir(self))
         iocs_data = validated_data.pop('iocs')

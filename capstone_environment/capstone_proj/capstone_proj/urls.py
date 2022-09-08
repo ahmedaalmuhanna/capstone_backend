@@ -22,7 +22,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from user import views as userViews
 from django.views.generic import TemplateView
 from user.views import  register_user,login_user,logout_user,dashboard,get_User
-from reports.views import report_list,create_report,update_report
+from reports.views import report_list,create_report,update_report, ReportCreateView,ReportListView,get_rport_list
+
 
 
 urlpatterns = [
@@ -39,8 +40,8 @@ urlpatterns = [
 
 
 
-    # path("api/reportcreate/", views.ReportCreateView.as_view(), name="report-create"),
-    # path("api/reportlist/", views.ReportListView.as_view(), name="report-list"),
+    path("api/reportcreate/", ReportCreateView.as_view(), name="report-create"),
+    path("api/reportlist/", ReportListView.as_view(), name="report-list"),
     # path("api/report/<int:report_id>", views.ReportDetailView.as_view(), name="report-detail"),
 
 
@@ -57,6 +58,7 @@ urlpatterns = [
     path("dashboard/", get_User,name="web-dashboard"),
     path("dashboard/create-report/", create_report,name="report_form"),
     path("dashboard/update/<int:report_id>/", update_report,name="report_update_form"),
+    path("dashboard/report-list", get_rport_list,name="report-list"),
 ]
 
 

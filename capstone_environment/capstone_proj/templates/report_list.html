@@ -1,0 +1,58 @@
+{%extends "base.html"%}
+{%load static%}
+{% load crispy_forms_tags %}
+{%block title%} Create Report {%endblock title%}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    {%block contant%}
+<main>
+    
+    <div class="row ">
+    {%for report in reports %}
+    <div class="card text-bg-light m-3" style="width:400px; height: 800px;">
+        <div class="card-header">{{report.profile.user}}</div>
+        <div class="card-body">
+            <h4>{{report.title}}</h4>
+          <h5 class="card-title">details :</h5>
+          <p class="card-text"> {{report.details}}</p>
+          <h5 class="card-title">reference :</h5>
+          <p class="card-text"> {{report.reference}}</p>
+          <h5 class="card-title">IOCs :</h5>
+
+          <li>CVE:</li>
+          <li>{{report.iocs.cve}}</li>
+          <li>URL:</li>
+          <li>{{report.iocs.url}}</li>
+          <li>DOMAIN:</li>
+          <li>{{report.iocs.domain}}</li>
+          <li>IP:</li>
+          <li>{{report.iocs.ip}}</li>
+          <li>MD5:</li>
+          <li>{{report.iocs.md5}}</li>
+          <li>SHA1:</li>
+          <li>{{report.iocs.sha1}}</li>
+          <li>SHA256:</li>
+          <li>{{report.iocs.sha256}}</li>
+          <li>Email:</li>
+          <li>{{report.iocs.email}}</li>
+          <li>Is Approve:</li>
+         
+<button> <li>{{report.is_approve}}</li></button>
+          <!-- <p class="card-text"> {{report.IOCs.}}</p> -->
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+    </main>
+    {%endblock contant%}
+    </html>
+    
